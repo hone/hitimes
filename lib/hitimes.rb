@@ -31,7 +31,11 @@ require 'hitimes/version'
 # this is the method recommended by rake-compiler
 begin
   # this will be for windows
-  require "hitimes/#{RUBY_VERSION.sub(/\.\d$/,'')}/hitimes"
+  if RUBY_VERSION == "2.0.0"
+    require "hitimes/2.0"
+  else
+    require "hitimes/#{RUBY_VERSION.sub(/\.\d$/,'')}/hitimes"
+  end
 rescue LoadError
   # everyone else.
   require 'hitimes/hitimes'
